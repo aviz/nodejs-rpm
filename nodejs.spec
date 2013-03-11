@@ -29,6 +29,7 @@ BuildRequires: gzip
 BuildRequires: python26
 %endif
 Patch0: node-js.centos5.configure.patch
+Patch1: node-js.request_parse_error.patch
 
 %description
 Node.js is a server-side JavaScript environment that uses an asynchronous event-driven model.
@@ -61,6 +62,7 @@ rm -rf $RPM_SOURCE_DIR/%{_base}-v%{version}
 %if "%{_dist_ver}" == ".el5"
 %patch0 -p1
 %endif
+%patch1 -p1
 
 %build
 %if "%{_dist_ver}" == ".el5"
