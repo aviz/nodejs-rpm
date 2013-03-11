@@ -1,0 +1,11 @@
+diff -ru node-v0.8.22-orig/lib/http.js node-v0.8.22/lib/http.js
+--- node-v0.8.22-orig/lib/http.js	2013-03-07 01:47:29.000000000 +0200
++++ node-v0.8.22/lib/http.js	2013-03-11 14:27:24.022096534 +0200
+@@ -1825,6 +1825,7 @@
+     var ret = parser.execute(d, start, end - start);
+     if (ret instanceof Error) {
+       debug('parse error');
++      socket.write('HTTP/1.1 400 Bad Request\n\rConnection: close');
+       socket.destroy(ret);
+     } else if (parser.incoming && parser.incoming.upgrade) {
+       // Upgrade or CONNECT
